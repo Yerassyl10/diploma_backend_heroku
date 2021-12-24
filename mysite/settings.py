@@ -148,12 +148,12 @@ MEDIA_URL = '/media/' # 'http://myhost:port/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-DEFAULT_FROM_EMAIL = 'daniyarbekuly@gmail.com'
+DEFAULT_FROM_EMAIL = 'freerideworldtourcontact@gmail.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'daniyarbekuly@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'freerideworldtourcontact@gmail.com'
+EMAIL_HOST_PASSWORD = 'Contact123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
