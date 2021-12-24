@@ -145,6 +145,13 @@ class CompaniesAPIView(generics.ListCreateAPIView):
                        filters.SearchFilter, ]
     search_fields = ['name', ]
 
+class OpportunitiesAPIView(generics.ListCreateAPIView):
+    queryset = Opportunity.objects.all()
+    serializer_class = OpportunitySerializer
+    permission_classes = (IsAuthenticated,)
+    filter_backends = [DjangoFilterBackend,
+                       filters.SearchFilter, ]
+    filter_class = OpportunityFilter
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def company_detail(request, company_id):
@@ -195,17 +202,18 @@ def subscribe_pressed_view(request, company_id):
     return JsonResponse({'status': 'success'})
 
 
+@csrf_exempt
 def subscribed_companies_list(request):
     subscribed_companies = []
 
-    for company in Subscription.objects.filter(user=request.user):
+    for subscription in Subscription.objects.filter(user=request.user):
         subscribed_companies.append({
-            'id': company.company.id,
-            'name': company.company.name,
-            'about_company': company.company.about_company,
-            'read_more': company.company.read_more,
+            'id': subscription.company.id,
+            'name': subscription.company.name,
+            'about_company': subscription.company.about_company,
+            'read_more': subscription.company.read_more,
             'is_subscribed': True,
-            'picture':company.company.picture,
+            'picture':subscription.company.picture.url,
         })
 
     return JsonResponse({'data': subscribed_companies})

@@ -4,7 +4,7 @@ from django.urls import path, include
 
 from api.views import detailed_opportunity_view, subscribed_opportunities_view, favourate_pressed_view, \
     favourate_opportunities_view, company_detail, opportunities_by_company, subscribe_pressed_view, \
-    subscribed_companies_list, CompaniesAPIView, all_opportunities_view, all_job_categories_view
+    subscribed_companies_list, CompaniesAPIView, all_opportunities_view, all_job_categories_view, OpportunitiesAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,6 +20,8 @@ urlpatterns = [
     path('api/subscribe_pressed/<int:company_id>/', subscribe_pressed_view),
     path('api/subscribed_companies/', subscribed_companies_list),
     path('api/companies/', CompaniesAPIView.as_view()),
-    path('api/opportunities/', all_opportunities_view),
+    # path('api/opportunities/', all_opportunities_view),
     path('api/job_categories/', all_job_categories_view),
+    path('api/opportunities/', OpportunitiesAPIView.as_view()),
+
 ]
